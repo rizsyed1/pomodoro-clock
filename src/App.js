@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor (props){
     super(props);
     this.state = {
-      workTime: 0,
+      workTime: 25,
       restTime: 0
     }
   }
@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       <React.Fragment>
         <h1>Pomodoro Clock</h1>
-        <TimeAdjuster />
+        <TimeAdjuster time={this.state.workTime} />
         
       </React.Fragment>
     )
