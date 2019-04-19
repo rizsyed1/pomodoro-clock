@@ -16,11 +16,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <h1>Pomodoro Clock</h1>
         <TimeAdjuster time={this.state.workTime} />
         
-      </React.Fragment>
+      </>
     )
   }
 }

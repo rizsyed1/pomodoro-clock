@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +10,7 @@ function TimeAdjuster({time}) {
         <React.Fragment>
             <div>
                 <FontAwesomeIcon icon={faArrowUp} />
-                <span></span>
+                <span>{time}</span>
                 <FontAwesomeIcon icon={faArrowDown} />
             </div>
         </React.Fragment>
@@ -17,5 +18,9 @@ function TimeAdjuster({time}) {
         
     )
 }
+
+TimeAdjuster.propTypes = {
+    time: PropTypes.number.isRequired
+};
 
 export default TimeAdjuster
