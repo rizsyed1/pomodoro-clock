@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
-import toJson from 'enzyme-to-json';
+import sinon from 'sinon';
 import TimeAdjuster from './TimeAdjuster.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
@@ -12,18 +12,31 @@ describe(('TimeAdjuster'), () => {
         expect(wrapper.find('div').length).toEqual(1);
     });
 
+    it('should render a element of className arrowUp', () => {
+        const wrapper = mount(<TimeAdjuster time={25} />) 
+        expect(wrapper.find('.arrowUp').length).toEqual(1);
+    })
+
+    it('should render an element of className arrowDown', () => {
+        const wrapper = mount(<TimeAdjuster time={25} />)
+        expect(wrapper.find('.arrowDown').length).toEqual(1);
+    })
+
     it('should render an upwards-pointing FontAwesome arrow icon', () => {
         const wrapper = mount(<TimeAdjuster time={25}/>);
         expect(wrapper.containsMatchingElement(<FontAwesomeIcon icon={faArrowUp} />)).toEqual(true);
     });
 
     it('should render an upwards-pointing FontAwesome arrow icon that calls the onClick callback when clicked', () => {
-        const wrapper = // use enzyme's simulate method to test onClick - see this link too: 
+        const mockCallBack = jest.fn();
+        const wrapper = mount(<TimeAdjuster upArrowClick={mockCallBack} time={25}/>);
+        wrapper.find('.arrowUp').simulate('click');
+        expect(mockCallBack).toHaveBeenCalledTimes(1);
     })
 
-    it('should render a <span> element that contains the time', () => {
+    it('should render a <span className="time"> element that contains the time', () => {
         const wrapper = mount(<TimeAdjuster time={25}/>);
-        expect(wrapper.find('span').length).toEqual(1);
+        expect(wrapper.find('.time').length).toEqual(1);
     });
 
     it('should render a downwards-pointing FontAwesome arrow icon', () => {
@@ -31,5 +44,10 @@ describe(('TimeAdjuster'), () => {
         expect(wrapper.containsMatchingElement(<FontAwesomeIcon icon={faArrowDown} />)).toEqual(true);
     });
 
-
+    it('should render a downwards-pointing FontAwesome arrow icon that calls the onClick callback when clicked', () => {
+        const mockCallBack = jest.fn();
+        const wrapper = mount(<TimeAdjuster downArrowClick={mockCallBack} time={25}/>);
+        wrapper.find('.arrowDown').simulate('click');
+        expect(mockCallBack).toHaveBeenCalledTimes(1);
+    })
 })

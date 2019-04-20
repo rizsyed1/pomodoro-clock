@@ -13,12 +13,15 @@ class App extends React.Component {
     }
   }
 
+  upArrowClick = () => true; 
+
+  downArrowClick = () => true;
 
   render() {
     return (
       <>
         <h1>Pomodoro Clock</h1>
-        <TimeAdjuster time={this.state.workTime} />
+        <TimeAdjuster downArrowClick={this.downArrowClick} upArrowClick={this.upArrowClick} time={this.state.workTime} />
         
       </>
     )
