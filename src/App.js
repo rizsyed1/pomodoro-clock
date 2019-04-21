@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
       <>
         <h1>Pomodoro Clock</h1>
-        <TimeAdjuster downArrowClick={this.downArrowClick} upArrowClick={this.upArrowClick} time={this.state.workTime} />
+        <TimeAdjuster timeAdjusterName='Break Length' downArrowClick={this.downArrowClick} upArrowClick={this.upArrowClick} time={this.state.workTime} />
         
       </>
     )
