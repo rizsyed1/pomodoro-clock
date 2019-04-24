@@ -1,63 +1,27 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
-import sinon from 'sinon';
+import { mount } from 'enzyme';
 import TimeAdjuster from './TimeAdjuster.js'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import App from '../App.js'
 
 describe(('TimeAdjuster'), () => {
-    it('should render a parent <span> node with className "container"', () => {
-        const wrapper = mount(<TimeAdjuster time={25} timeAdjusterName={'sampleName'}/>);
-        expect(wrapper.find('.container').length).toEqual(1);
-    });
+    it('should render a downwards-pointing FontAwesome arrow icon whose onClick callback increments time by one minute when clicked', () => {
+        const AppWrapper = mount(<App />)
 
-    it('should render a header stating whether it will be measuring productive time or rest time', () => {
-        const wrapper = mount(<TimeAdjuster time={25} timeAdjusterName={'sampleName'}/>); 
-        expect(wrapper.find('h4').length).toEqual(1);
-    });
-
-    it('should render a header of className header', () => {
-        const wrapper = mount(<TimeAdjuster time={25} timeAdjusterName={'sampleName'}/>);
-        expect(wrapper.find('.container').length).toEqual(1);
-    });
-
-    it('should render a element of className arrowUp', () => {
-        const wrapper = mount(<TimeAdjuster time={25} timeAdjusterName={'sampleName'}/>) 
-        expect(wrapper.find('.arrowUp').length).toEqual(1);
-    });
-
-    it('should render an element of className arrowDown', () => {
-        const wrapper = mount(<TimeAdjuster time={25} timeAdjusterName={'sampleName'}/>)
-        expect(wrapper.find('.arrowDown').length).toEqual(1);
-    });
-
-    it('should render an upwards-pointing FontAwesome arrow icon', () => {
-        const wrapper = mount(<TimeAdjuster time={25}   timeAdjusterName={'sampleName'}/>);
-        expect(wrapper.containsMatchingElement(<FontAwesomeIcon icon={faArrowUp} />)).toEqual(true);
-    });
-
-    it('should render an upwards-pointing FontAwesome arrow icon that calls the onClick callback when clicked', () => {
-        const mockCallBack = jest.fn();
-        const wrapper = mount(<TimeAdjuster upArrowClick={mockCallBack} time={25} timeAdjusterName={'sampleName'}/>);
-        wrapper.find('.arrowUp').simulate('click');
-        expect(mockCallBack).toHaveBeenCalledTimes(1);
-    });
-
-    it('should render a <span className="time"> element that contains the time', () => {
-        const wrapper = mount(<TimeAdjuster time={25} timeAdjusterName={'sampleName'}/>);
-        expect(wrapper.find('.time').length).toEqual(1);
-    });
-
-    it('should render a downwards-pointing FontAwesome arrow icon', () => {
-        const wrapper = mount(<TimeAdjuster time={25}  timeAdjusterName={'sampleName'}/>);
-        expect(wrapper.containsMatchingElement(<FontAwesomeIcon icon={faArrowDown} />)).toEqual(true);
-    });
-
-    it('should render a downwards-pointing FontAwesome arrow icon that calls the onClick callback when clicked', () => {
-        const mockCallBack = jest.fn();
-        const wrapper = mount(<TimeAdjuster downArrowClick={mockCallBack} time={25} timeAdjusterName={'sampleName'}/>);
+        const mockdownArrowClick = () => {
+            AppWrapper.setState({
+              workTime: AppWrapper.state.workTime - 1
+            })
+        }
+        
+        const wrapper = mount(<TimeAdjuster time={25} downArrowClick={mockdownArrowClick} timeAdjusterName='Session Length' />);
         wrapper.find('.arrowDown').simulate('click');
-        expect(mockCallBack).toHaveBeenCalledTimes(1);
+        expect(wrapper.contains(<span className='time'>{24}</span>)).toBe(true);
     });
+
+    // it('should render a upwards-pointing FontAwesome arrow icon whose onClick callback increments time by one minute when clicked', () => {
+    //     const wrapper = 
+    // })
 })

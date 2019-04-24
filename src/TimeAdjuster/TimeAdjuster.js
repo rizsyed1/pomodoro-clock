@@ -6,14 +6,14 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 function TimeAdjuster({time, downArrowClick, upArrowClick, timeAdjusterName}) {
     return (
-        <React.Fragment>
+        <>
             <span className='container'>
                 <h4 className='header'>{timeAdjusterName}</h4>
                 <span onClick={upArrowClick} className='arrowUp'><FontAwesomeIcon icon={faArrowUp}/></span>
                 <span className='time'>{time}</span>
                 <span onClick={downArrowClick} className='arrowDown'><FontAwesomeIcon  icon={faArrowDown} /></span>
             </span>
-        </React.Fragment>
+        </>
         
         
     )
