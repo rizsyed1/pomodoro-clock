@@ -14,22 +14,36 @@ class App extends React.Component {
     }
   }
 
-  upArrowClick = () => {
-
+  workTimeUpArrowClick = () => {
+    this.setState({
+      workTime: this.state.workTime + 1
+    })
   }
 
-  downArrowClick = () => {
+  workTimeDownArrowClick = () => {
     this.setState({
       workTime: this.state.workTime - 1
     })
   }
 
+  restTimeUpArrowClick = () => {
+    this.setState({
+      restTime: this.state.restTime + 1
+    })
+  }
+
+  restTimeDownArrowClick = () => {
+    this.setState({
+      restTime: this.state.restTime - 1
+    })
+  }
+
   render() {
-    return (
+    return ( 
       <>
         <h1>Pomodoro Clock</h1>
-        <TimeAdjuster timeAdjusterName='Break Length' downArrowClick={this.downArrowClick} upArrowClick={this.upArrowClick} time={this.state.workTime} />
-        <TimeAdjuster timeAdjusterName='Session Length' downArrowClick={this.downArrowClick} upArrowClick={this.downArrowClick} time={this.state.restTime} />
+        <TimeAdjuster timeAdjusterName='Break Length' downArrowClick={this.restTimeDownArrowClick} upArrowClick={this.restTimeUpArrowClick} time={this.state.restTime} />
+        <TimeAdjuster timeAdjusterName='Session Length' downArrowClick={this.workTimeDownArrowClick} upArrowClick={this.workTimeUpArrowClick} time={this.state.workTime} />
         <Timer />
       </>
     )
