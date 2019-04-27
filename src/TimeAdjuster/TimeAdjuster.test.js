@@ -28,7 +28,7 @@ describe(('TimeAdjuster'), () => {
         wrapper.find('.arrowUp').simulate('click');
         const wrapper2 =  mount(<TimeAdjuster time={AppWrapper.state().workTime} upArrowClick={mockUpArrowClick} timeAdjusterName='Session Length' />);
         expect(wrapper2.contains(<span className='time'>{26}</span>)).toEqual(true)
-    })
+    });
 
     it('when rendering Break Length should should render a downwards-pointing FontAwesome arrow icon whose onClick callback decrements restTime by one minute', () => {
         const AppWrapper = mount(<App />)
@@ -41,7 +41,7 @@ describe(('TimeAdjuster'), () => {
         wrapper.find('.arrowDown').simulate('click');
         const wrapper2 =  mount(<TimeAdjuster time={AppWrapper.state().restTime} downArrowClick={mockDownArrowClick} timeAdjusterName='Break Length' />);
         expect(wrapper2.contains(<span className='time'>{4}</span>)).toEqual(true)
-    })
+    });
 
     it('when rendering Break Length should should render a upwards-pointing FontAwesome arrow icon whose onClick callback increments restTime by one minute', () => {
         const AppWrapper = mount(<App />)
@@ -54,5 +54,5 @@ describe(('TimeAdjuster'), () => {
         wrapper.find('.arrowUp').simulate('click');
         const wrapper2 =  mount(<TimeAdjuster time={AppWrapper.state().restTime} upArrowClick={mockUpArrowClick} timeAdjusterName='Break Length' />);
         expect(wrapper2.contains(<span className='time'>{6}</span>)).toEqual(true)
-    })
+    });
 })
