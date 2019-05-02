@@ -8,7 +8,6 @@ import Timer from './Timer/Timer.js';
 
 class App extends React.Component {
   constructor (props){
-    console.log( 'constructor' )
     super(props);
     this.state = {
       workTimeMinutes: 25,
@@ -35,6 +34,26 @@ class App extends React.Component {
     }
   }
 
+  workTimeMoreThanZero = () => { // checks state.workTime won't go below zero & state.countDown is false
+  if (this.state.workTimeMinutes >= 1 && !this.state.countDown ){
+    return true;
+  } else {
+    return false;
+  }
+  }
+
+  restTimeMoreThanZero = () => { // checks state.breakTime won't go below zero and state.countDown is false
+    if (this.state.breakTimeMinutes >= 1 && !this.state.countDown ){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  //the time rendered in timer does not reduce below zero...
+  // ... and then return a NAN.
+
   breakTimeCountDown = () => {
     // first if-condition ensures code block only runs if the break timer has started
     if( this.state.breakTimeMinutes == this.state.timeAdjusterBreakTimeMinutes && this.state.breakTimeMinutes != '00' && this.state.timeAdjusterBreakTimeMinutes != '00' ){ 
@@ -54,7 +73,7 @@ class App extends React.Component {
       this.decrementWorkTimeSeconds();
     } else if( this.state.workTimeMinutes > 0 && this.state.workTimeSeconds == '00' ){
       console.log( 'passed if condition' )
-      this.decrementWorkTimeMinute(); .
+      this.decrementWorkTimeMinute();
     } else if( this.state.workTimeMinutes == '00' && this.state.workTimeSeconds == '00' ){
       this.triggerBreakTimeCountDown()  
     }
@@ -75,7 +94,7 @@ class App extends React.Component {
   decrementBreakTimeSeconds = () =>{ // reduces the break timer by one second
     if(this.state.breakTimeSeconds <= 10){ // if breakTimeSeconds is one digit
       this.setState( (state) => ({
-        breakTimeSeconds: '0' + ( state.breakTimeSeconds - 1 ) /
+        breakTimeSeconds: '0' + ( state.breakTimeSeconds - 1 ) 
       }))
     } else {
       this.setState( (state) => ({
@@ -131,21 +150,24 @@ class App extends React.Component {
   }
 
 //workTimeMinutes & timeAdjusterWorkTimeMinutes incremented by one 
-  workTimeUpArrowClick = () => { 
-    this.setState( (state) => ({
-      workTimeMinutes: Number(this.state.workTimeMinutes) + 1,
-      timeAdjusterWorkTimeMinutes: this.state.timeAdjusterWorkTimeMinutes  + 1,
-    }));
+  workTimeUpArrowClick = () => {
+    if (!this.state.countDown){
+      this.setState( (state) => ({
+        workTimeMinutes: Number(this.state.workTimeMinutes) + 1,
+        timeAdjusterWorkTimeMinutes: this.state.timeAdjusterWorkTimeMinutes  + 1,
+      }));
+    }
   }
 
   // workTimeMinutes and timeAdjusterWorkTimeMinutes state props decremented by one 
   workTimeDownArrowClick = () => {
-    if(this.state.workTimeMinutes <= 10){
+    console.log(this.workTimeMoreThanZero())
+    if(this.state.workTimeMinutes <= 10  && this.workTimeMoreThanZero()){
       this.setState( (state) => ({
         workTimeMinutes: '0' + (this.state.workTimeMinutes - 1),
         timeAdjusterWorkTimeMinutes: this.state.timeAdjusterWorkTimeMinutes - 1
-      }), console.log(this.state.workTimeMinutes));
-    } else {
+      }));
+    } else if (this.workTimeMoreThanZero()) {
       this.setState( (state) => ({
         workTimeMinutes: this.state.workTimeMinutes - 1,
         timeAdjusterWorkTimeMinutes: this.state.timeAdjusterWorkTimeMinutes - 1
@@ -155,20 +177,25 @@ class App extends React.Component {
 
   // breakTimeMinutes and timeAdjusterBreakTimeMinutes state props incremented by one 
   restTimeUpArrowClick = () => {
-    this.setState({
-      breakTimeMinutes: Number(this.state.breakTimeMinutes) + 1,
-      timeAdjusterBreakTimeMinutes: this.state.timeAdjusterBreakTimeMinutes  + 1,
-    });
+    if (!this.state.countDown){
+      this.setState( (state) => ({
+        breakTimeMinutes: Number(this.state.breakTimeMinutes) + 1,
+        timeAdjusterBreakTimeMinutes: this.state.timeAdjusterBreakTimeMinutes  + 1,
+      }));
+    }
   }
 
   // breakTimeMinutes and timeAdjusterBreakTimeMinutes state props decremented by one 
   restTimeDownArrowClick = () => {
-    if(this.state.breakTimeMinutes <= 10) {
+    console.log('breakTimeMinute is ' + this.state.breakTimeMinutes)
+    console.log('timeAdjusterBreakTimeMinutes is ' + this.state.timeAdjusterBreakTimeMinutes)
+    console.log(this.restTimeMoreThanZero())
+    if(this.state.breakTimeMinutes <= 10 && this.restTimeMoreThanZero()) {
       this.setState( (state) => ({
-        breakMinutes: '0' + (this.state.breakTimeMinutes - 1),
+        breakTimeMinutes: '0' + (this.state.breakTimeMinutes - 1),  
         timeAdjusterBreakTimeMinutes: this.state.timeAdjusterBreakTimeMinutes - 1
       }))
-    } else {
+    } else if (this.restTimeMoreThanZero()) {
       this.setState( (state) => ({
         breakTimeMinutes: this.state.breakTimeMinutes - 1,
         timeAdjusterBreakTimeMinutes: this.state.timeAdjusterBreakTimeMinutes - 1
@@ -212,7 +239,4 @@ class App extends React.Component {
 export default App;
 
 
-// Edge cases to look at: 
-// 1) ensuring that if I click on the TimeAdjuster arrows when the Timer is running, the time rendered in the timer does not change. 
-//2) Ensuring that if I click on a TimeAdjuster arrow when the timer is counting down less than a minute, the time rendered in timer does not reduce below zero...
-// ... and then return a NAN.
+ 
