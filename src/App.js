@@ -236,3 +236,4 @@ export default App;
 
 
  
+// write a function that can pause and restart the timer
