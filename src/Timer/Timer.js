@@ -2,14 +2,25 @@ import React from 'react';
 import './Timer.css';
 import PropTypes from 'prop-types';
 
-function Timer({workMinutes, workSeconds, workTimer, breakMinutes, breakSeconds}) {
+let timeDisplay = (minutes, seconds) => {
+    if ((minutes).toString().length < 2 && (seconds).toString().length < 2){
+        return `0${minutes}:0${seconds}`
+    } else if ((minutes).toString().length < 2 && (seconds).toString().length >= 2) {
+        return `0${minutes}:${seconds}`
+    } else if ((minutes).toString().length >= 2 && (seconds).toString().length < 2){
+        return `${minutes}:0${seconds}`
+    } else {
+        return `${minutes}:${seconds}`
+    }
+}
 
+function Timer({workMinutes, workSeconds, workTimer, breakMinutes, breakSeconds}) {
     if(workTimer) {
         return (
             <>
                 <div className='container'>
                     <p>Session</p>
-                    <p>{workMinutes}:{workSeconds}</p>
+                    <p>{timeDisplay(workMinutes, workSeconds)}</p>
                 </div>
             </>
         )
@@ -18,7 +29,7 @@ function Timer({workMinutes, workSeconds, workTimer, breakMinutes, breakSeconds}
             <>
                 <div className='container'>
                     <p>Session</p>
-                    <p>{breakMinutes}:{breakSeconds}</p>
+                    <p>{timeDisplay(breakMinutes, breakSeconds)}</p>
                 </div>
             </>
         )
