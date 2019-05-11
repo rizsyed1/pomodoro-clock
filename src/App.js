@@ -13,49 +13,64 @@ class App extends React.Component {
       timeAdjusterWorkTime: 1500,
       timeAdjusterBreakTime: 300,
       timeLeft: 0,
-      workTimer: true, //true when timer is measuring working time, false if timer is measuring break
-      iterationCount: 0,
+      timerState: 'stopped',
+      workTimer: '', // session is for work, break is for break 
+      iterationCount: -1,
       pause: false
     }
   }
 
-
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.iterationCount !== this.state.iterationCount){
+      console.log(`iterationCount is now ${this.state.iterationCount}`)
+    }
+  }
   
   timerEngine = () => {
-    while(this.state.iterationCount <= 3) {
-
-      this.setState( (state) => ({ timeLeft: state.timeAdjusterWorkTime }));
-
-      while(this.state.timeLeft > 0){
-        this.timerID = setInterval( this.decrementSeconds , 1000 )
-      }
-
-      clearInterval(this.timerID)
-
-      this.setState( (state) => ({ timeLeft: state.timeAdjusterBreakTime }));
-
-      while(this.state.timeLeft > 0){
-        this.timerID = setInterval( this.decrementSeconds , 1000 )
-      }
-
-      clearInterval(this.timerID)
-
-      this.setState( (state) => ({ iterationCount: state.iterationCount + 1 }) )
+    if ( this.state.timerState === 'stopped' ) {
+      this.beginCountDown() 
+      this.setState({timerState: 'running'})
+    } else {
+        this.setState({ timerState: 'stopped'})
+        clearInterval(this.timerID)
     }
   }
 
-  decrementSeconds = () => { // decrements a second from either work or break timer.
-    this.setState( (state) => ({timeLeft: state.timeLeft -1}))
+  beginCountDown = () => setInterval( () => { this.switchControl(); this.decrementSeconds()  } , 1000 )
+  
+  decrementSeconds = () => this.setState( (state) => ({timeLeft: state.timeLeft - 1 }))
+
+  switchControl = () => {
+    let timeLeft = this.state.timeLeft; 
+    let iterationCount = this.state.iterationCount
+    if( timeLeft === 0 && iterationCount < 4 ) { //replace this with timeLeft < 0 if it gets glitch - let's see what happens
+      if( this.state.workTimer === 'session' ) {
+        this.setState( (state) => ({  
+          workTimer: 'break',  
+          timeLeft: state.timeAdjusterBreakTime,
+        }), console.log('break has started'))
+      } else {
+          this.setState( (state) => ({  
+            workTimer: 'session',  
+            timeLeft: state.timeAdjusterWorkTime,
+            iterationCount: state.iterationCount + 1,  
+          }), console.log('session has started'))
+        }   
+    } else {
+      this.setState({timerState: 'stopped'})
+    }
   }
+  
+
 
   workTimeUpArrowClick = () => { //workTimeMinutes & timeAdjusterWorkTimeMinutes incremented by one 
-        this.setState( (state) => ({
-          timeAdjusterWorkTime: state.timeAdjusterWorkTime + 60,
-        }));
+    this.setState( (state) => ({
+      timeAdjusterWorkTime: state.timeAdjusterWorkTime + 60,
+    }));
   }
   
   workTimeDownArrowClick = () => { // workTimeMinutes and timeAdjusterWorkTimeMinutes state props decremented by one 
-    if( this.state.workTime >= 60 ){
+    if( this.state.timeAdjusterWorkTime >= 60 ){
       this.setState( (state) => ({
         timeAdjusterWorkTime: state.timeAdjusterWorkTime - 60
       }));
@@ -69,7 +84,7 @@ class App extends React.Component {
   }
 
   restTimeDownArrowClick = () => { // breakTimeMinutes and timeAdjusterBreakTimeMinutes state props decremented by one  
-    if( this.state.breakTime >= 60 ){  
+    if( this.state.timeAdjusterBreakTime >= 60 ){  
       this.setState( (state) => ({
         timeAdjusterBreakTime: state.timeAdjusterBreakTime - 60
       }))

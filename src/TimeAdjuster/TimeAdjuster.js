@@ -6,7 +6,7 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 let timeDisplay = ( seconds) => {
         let returnedMinutes = Math.floor(seconds / 60)
-        return `${returnedMinutes}`
+        return returnedMinutes
 }
 
 function TimeAdjuster({time, downArrowClick, upArrowClick, timeAdjusterName}) {
@@ -19,8 +19,6 @@ function TimeAdjuster({time, downArrowClick, upArrowClick, timeAdjusterName}) {
                 <span onClick={downArrowClick} className='arrowDown'><FontAwesomeIcon  icon={faArrowDown} /></span>
             </span>
         </>
-        
-        
     )
 }
 
