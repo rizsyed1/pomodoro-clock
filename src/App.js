@@ -36,28 +36,34 @@ class App extends React.Component {
     }
   }
 
-  beginCountDown = () => setInterval( () => { this.switchControl(); this.decrementSeconds()  } , 1000 )
+  beginCountDown = () => this.timerID = setInterval( () => { this.switchControl(); this.decrementSeconds()  } , 1000 )
   
   decrementSeconds = () => this.setState( (state) => ({timeLeft: state.timeLeft - 1 }))
 
   switchControl = () => {
     let timeLeft = this.state.timeLeft; 
     let iterationCount = this.state.iterationCount
+    console.log(this.state.timerState)
+    
     if( timeLeft === 0 && iterationCount < 4 ) { //replace this with timeLeft < 0 if it gets glitch - let's see what happens
+      
       if( this.state.workTimer === 'session' ) {
-        this.setState( (state) => ({  
-          workTimer: 'break',  
-          timeLeft: state.timeAdjusterBreakTime,
-        }), console.log('break has started'))
-      } else {
           this.setState( (state) => ({  
-            workTimer: 'session',  
-            timeLeft: state.timeAdjusterWorkTime,
-            iterationCount: state.iterationCount + 1,  
-          }), console.log('session has started'))
-        }   
-    } else {
-      this.setState({timerState: 'stopped'})
+            workTimer: 'break',  
+            timeLeft: state.timeAdjusterBreakTime,
+          }), console.log('break has started'))
+      
+        } else {
+            this.setState( (state) => ({  
+              workTimer: 'session',  
+              timeLeft: state.timeAdjusterWorkTime,
+              iterationCount: state.iterationCount + 1,  
+            }), console.log('session has started'))
+          }   
+    
+      } else if (iterationCount === 4 ) {
+          this.setState({timerState: 'stopped'})
+          clearInterval(this.timerID)
     }
   }
   
@@ -108,7 +114,9 @@ class App extends React.Component {
           time={this.state.timeAdjusterWorkTime} 
         />
         <Timer 
+          iterationCount={this.state.iterationCount}
           timeLeft={this.state.timeLeft}
+          timeAdjusterWorkTime={this.state.timeAdjusterWorkTime}
         />
         <PlayPauseButton 
           countDown={this.timerEngine} 

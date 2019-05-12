@@ -19,13 +19,23 @@ let timeDisplay = ( seconds) => {
         }
 }
 
-function Timer({timeLeft}) {
+function Timer({timeLeft, iterationCount, timeAdjusterWorkTime}) {
+    if(iterationCount === -1){
         return (
-                <div className='container'>
-                    <p>Session</p>
-                    <p>{timeDisplay(timeLeft)}</p>
-                </div>
+            <div className='container'>
+                <p>Session</p>
+                <p>{timeDisplay(timeAdjusterWorkTime)}</p>
+            </div>
         )  
+    } else {
+        return (
+            <div className='container'>
+                <p>Session</p>
+                <p>{timeDisplay(timeLeft)}</p>
+            </div>
+        )  
+    }
+        
 }
 
 export default Timer; 
