@@ -19,8 +19,8 @@ let timeDisplay = ( seconds) => {
         }
 }
 
-function Timer({timeLeft, iterationCount, timeAdjusterWorkTime}) {
-    if(iterationCount === -1){
+function Timer({timeLeft, workTimer, timeAdjusterWorkTime}) {
+    if(workTimer === ''){
         return (
             <div className='container'>
                 <p>Session</p>

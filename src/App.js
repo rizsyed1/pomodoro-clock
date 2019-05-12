@@ -1,10 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
+
 import PlayPauseButton from './PlayPauseButton/PlayPauseButton.js';
 import TimeAdjuster from './TimeAdjuster/TimeAdjuster.js';
 import Timer from './Timer/Timer.js';
+import ResetButton from './ResetButton/ResetButton.js';
 
 class App extends React.Component {
   constructor (props){
@@ -14,9 +15,8 @@ class App extends React.Component {
       timeAdjusterBreakTime: 300,
       timeLeft: 0,
       timerState: 'stopped',
-      workTimer: '', // session is for work, break is for break 
-      iterationCount: -1,
-      pause: false
+      workTimer: '', 
+      iterationCount: 0,
     }
   }
 
@@ -38,44 +38,54 @@ class App extends React.Component {
 
   beginCountDown = () => this.timerID = setInterval( () => { this.switchControl(); this.decrementSeconds()  } , 1000 )
   
-  decrementSeconds = () => this.setState( (state) => ({timeLeft: state.timeLeft - 1 }))
+  decrementSeconds = () => this.setState( (state) => ({ timeLeft: state.timeLeft - 1 }))
 
   switchControl = () => {
     let timeLeft = this.state.timeLeft; 
     let iterationCount = this.state.iterationCount
     console.log(this.state.timerState)
     
-    if( timeLeft === 0 && iterationCount < 4 ) { //replace this with timeLeft < 0 if it gets glitch - let's see what happens
+    if( timeLeft === 0 && iterationCount <= 3 ) { 
       
       if( this.state.workTimer === 'session' ) {
           this.setState( (state) => ({  
             workTimer: 'break',  
             timeLeft: state.timeAdjusterBreakTime,
+            iterationCount: state.iterationCount + 1,
           }), console.log('break has started'))
       
         } else {
             this.setState( (state) => ({  
               workTimer: 'session',  
-              timeLeft: state.timeAdjusterWorkTime,
-              iterationCount: state.iterationCount + 1,  
+              timeLeft: state.timeAdjusterWorkTime,  
             }), console.log('session has started'))
           }   
     
-      } else if (iterationCount === 4 ) {
+      } else if (iterationCount === 3 ) {
           this.setState({timerState: 'stopped'})
           clearInterval(this.timerID)
     }
   }
   
+  resetTimer = () => {
+    clearInterval(this.timerID);
+    this.setState({
+      timeLeft: 0,
+      timeAdjusterWorkTime: 1500,
+      timeAdjusterBreakTime: 300,
+      timerState: 'stopped',
+      workTimer: '',
+      iterationCount: 0
+    });
+  }
 
-
-  workTimeUpArrowClick = () => { //workTimeMinutes & timeAdjusterWorkTimeMinutes incremented by one 
+  workTimeUpArrowClick = () => { 
     this.setState( (state) => ({
       timeAdjusterWorkTime: state.timeAdjusterWorkTime + 60,
     }));
   }
   
-  workTimeDownArrowClick = () => { // workTimeMinutes and timeAdjusterWorkTimeMinutes state props decremented by one 
+  workTimeDownArrowClick = () => {
     if( this.state.timeAdjusterWorkTime >= 60 ){
       this.setState( (state) => ({
         timeAdjusterWorkTime: state.timeAdjusterWorkTime - 60
@@ -83,13 +93,13 @@ class App extends React.Component {
     }
   }
    
-  restTimeUpArrowClick = () => { // breakTimeMinutes and timeAdjusterBreakTimeMinutes state props incremented by one
+  restTimeUpArrowClick = () => { 
         this.setState( (state) => ({
           timeAdjusterBreakTime: state.timeAdjusterBreakTime  + 60,
         }));
   }
 
-  restTimeDownArrowClick = () => { // breakTimeMinutes and timeAdjusterBreakTimeMinutes state props decremented by one  
+  restTimeDownArrowClick = () => {   
     if( this.state.timeAdjusterBreakTime >= 60 ){  
       this.setState( (state) => ({
         timeAdjusterBreakTime: state.timeAdjusterBreakTime - 60
@@ -114,15 +124,16 @@ class App extends React.Component {
           time={this.state.timeAdjusterWorkTime} 
         />
         <Timer 
-          iterationCount={this.state.iterationCount}
+          workTimer={this.state.workTimer}
           timeLeft={this.state.timeLeft}
           timeAdjusterWorkTime={this.state.timeAdjusterWorkTime}
         />
         <PlayPauseButton 
           countDown={this.timerEngine} 
-          play={faPlay} 
-          pause={faPause} 
         /> 
+        <ResetButton
+          resetTimer={this.resetTimer}
+        />
       </>
     )
   }
@@ -131,6 +142,3 @@ class App extends React.Component {
 
 export default App;
 
-
- 
-// write a function that can pause and restart the timer
