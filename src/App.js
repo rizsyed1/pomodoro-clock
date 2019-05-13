@@ -109,7 +109,7 @@ class App extends React.Component {
 
   render() {
     return ( 
-      <>
+      <div className='pomodoro' >
         <h1>Pomodoro Clock</h1>
         <TimeAdjuster 
           timeAdjusterName='Break Length' 
@@ -134,7 +134,7 @@ class App extends React.Component {
         <ResetButton
           resetTimer={this.resetTimer}
         />
-      </>
+      </div>
     )
   }
 }
