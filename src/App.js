@@ -111,18 +111,20 @@ class App extends React.Component {
     return ( 
       <div className='pomodoro' >
         <h1 className='title'>Pomodoro Clock</h1>
-        <TimeAdjuster 
-          timeAdjusterName='Break Length' 
-          downArrowClick={this.restTimeDownArrowClick} 
-          upArrowClick={this.restTimeUpArrowClick} 
-          time={this.state.timeAdjusterBreakTime} 
-        />
-        <TimeAdjuster 
-          timeAdjusterName='Session Length' 
-          downArrowClick={this.workTimeDownArrowClick} 
-          upArrowClick={this.workTimeUpArrowClick} 
-          time={this.state.timeAdjusterWorkTime} 
-        />  
+        <div className='timeAdjusterContainer'>
+          <TimeAdjuster 
+            timeAdjusterName='Break Length' 
+            downArrowClick={this.restTimeDownArrowClick} 
+            upArrowClick={this.restTimeUpArrowClick} 
+            time={this.state.timeAdjusterBreakTime} 
+          />
+          <TimeAdjuster 
+            timeAdjusterName='Session Length' 
+            downArrowClick={this.workTimeDownArrowClick} 
+            upArrowClick={this.workTimeUpArrowClick} 
+            time={this.state.timeAdjusterWorkTime} 
+          />
+        </div>  
         <Timer 
           workTimer={this.state.workTimer}
           timeLeft={this.state.timeLeft}
