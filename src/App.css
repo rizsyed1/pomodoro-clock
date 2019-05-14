@@ -2,4 +2,9 @@ html{
   background-color: #525B56;
   height: 100vh;
   color: white;
+  text-align: center
+}
+
+.title{
+  margin-top: 15%; 
 }

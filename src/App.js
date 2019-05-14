@@ -110,7 +110,7 @@ class App extends React.Component {
   render() {
     return ( 
       <div className='pomodoro' >
-        <h1>Pomodoro Clock</h1>
+        <h1 className='title'>Pomodoro Clock</h1>
         <TimeAdjuster 
           timeAdjusterName='Break Length' 
           downArrowClick={this.restTimeDownArrowClick} 
@@ -122,7 +122,7 @@ class App extends React.Component {
           downArrowClick={this.workTimeDownArrowClick} 
           upArrowClick={this.workTimeUpArrowClick} 
           time={this.state.timeAdjusterWorkTime} 
-        />
+        />  
         <Timer 
           workTimer={this.state.workTimer}
           timeLeft={this.state.timeLeft}

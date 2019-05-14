@@ -13,7 +13,7 @@ function TimeAdjuster({time, downArrowClick, upArrowClick, timeAdjusterName}) {
     return (
         <>
             <span className='container'>
-                <h4 className='header'>{timeAdjusterName}</h4>
+                <span className='header'>{timeAdjusterName}></span>
                 <span onClick={upArrowClick} className='arrowUp'><FontAwesomeIcon icon={faArrowUp}/></span>
                 <span className='time'>{timeDisplay(time)}</span>
                 <span onClick={downArrowClick} className='arrowDown'><FontAwesomeIcon  icon={faArrowDown} /></span>
