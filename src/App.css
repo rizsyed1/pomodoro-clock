@@ -1,9 +1,5 @@
 html{
-  height: 100%
-}
-
-.pomodoro{
-  background-color: green;
+  background-color: #525B56;
   height: 100vh;
   color: white;
 }
