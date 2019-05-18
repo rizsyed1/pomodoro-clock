@@ -1,10 +1,11 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
+import './ResetButton.css';
 
 const ResetButton = ({ resetTimer }) => {
     return(
-        <button type='button' onClick={ resetTimer } ><FontAwesomeIcon icon={ faSync } /></button>
+        <button className='resetButton' type='button' onClick={ resetTimer } ><FontAwesomeIcon icon={ faSync } /></button>
     )
 }
 

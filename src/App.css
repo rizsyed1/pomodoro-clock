@@ -1,16 +1,24 @@
 html{
   background-color: #525B56;
   height: 100vh;
-  color: white;
+  color: #f8f8ff;
   text-align: center
 }
 
 .timeAdjusterContainer{
   display: flex;
-  justify-content: center;
-  padding: 1%
+  justify-content: space-around;
+  margin-left: 35%;
+  width: 30%;
+  font-size: 2em;
 }
 
 .title{
-  margin-top: 15%; 
+  margin-top: 7%;
+  font-size: 4em;
+}
+
+.timerAndButtons{
+  padding-top: 3%;
+  text-align: center
 }

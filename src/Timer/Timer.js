@@ -1,6 +1,5 @@
 import React from 'react'; 
 import './Timer.css';
-import PropTypes from 'prop-types';
 
 let timeDisplay = ( seconds) => {
         let returnedMinutes = Math.floor(seconds / 60)
@@ -22,16 +21,16 @@ let timeDisplay = ( seconds) => {
 function Timer({timeLeft, workTimer, timeAdjusterWorkTime}) {
     if(workTimer === ''){
         return (
-            <div className='container'>
-                <p>Session</p>
-                <p>{timeDisplay(timeAdjusterWorkTime)}</p>
+            <div className='timerContainer'>
+                <span className='titleSession'>Session</span>
+                <span className='timeDisplay'>{timeDisplay(timeAdjusterWorkTime)}</span>
             </div>
         )  
     } else {
         return (
-            <div className='container'>
-                <p>Session</p>
-                <p>{timeDisplay(timeLeft)}</p>
+            <div className='timerContainer'>
+                <span className='titleSession'>Session</span>
+                <span className='timeDisplay'>{timeDisplay(timeLeft)}</span>
             </div>
         )  
     }

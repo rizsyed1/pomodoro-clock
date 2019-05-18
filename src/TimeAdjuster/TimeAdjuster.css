@@ -1,0 +1,9 @@
+.timeContainer{
+    display: inline-block;
+}
+
+.time{
+    display: inline-block;
+    width: 20%;
+
+}

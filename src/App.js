@@ -80,9 +80,11 @@ class App extends React.Component {
   }
 
   workTimeUpArrowClick = () => { 
-    this.setState( (state) => ({
-      timeAdjusterWorkTime: state.timeAdjusterWorkTime + 60,
-    }));
+    if ( this.state.timeAdjusterWorkTime < 5940) {
+      this.setState( (state) => ({
+        timeAdjusterWorkTime: state.timeAdjusterWorkTime + 60,
+      }));
+    }
   }
   
   workTimeDownArrowClick = () => {
@@ -94,9 +96,11 @@ class App extends React.Component {
   }
    
   restTimeUpArrowClick = () => { 
-        this.setState( (state) => ({
-          timeAdjusterBreakTime: state.timeAdjusterBreakTime  + 60,
-        }));
+    if( this.state.timeAdjusterBreakTime < 5940){
+      this.setState( (state) => ({
+        timeAdjusterBreakTime: state.timeAdjusterBreakTime  + 60,
+      }));
+    }
   }
 
   restTimeDownArrowClick = () => {   
@@ -111,6 +115,7 @@ class App extends React.Component {
     return ( 
       <div className='pomodoro' >
         <h1 className='title'>Pomodoro Clock</h1>
+
         <div className='timeAdjusterContainer'>
           <TimeAdjuster 
             timeAdjusterName='Break Length' 
@@ -124,18 +129,21 @@ class App extends React.Component {
             upArrowClick={this.workTimeUpArrowClick} 
             time={this.state.timeAdjusterWorkTime} 
           />
-        </div>  
-        <Timer 
-          workTimer={this.state.workTimer}
-          timeLeft={this.state.timeLeft}
-          timeAdjusterWorkTime={this.state.timeAdjusterWorkTime}
-        />
-        <PlayPauseButton 
-          countDown={this.timerEngine} 
-        /> 
-        <ResetButton
-          resetTimer={this.resetTimer}
-        />
+        </div>
+
+        <div className='timerAndButtons'>
+          <Timer 
+            workTimer={this.state.workTimer}
+            timeLeft={this.state.timeLeft}
+            timeAdjusterWorkTime={this.state.timeAdjusterWorkTime}
+          />
+          <PlayPauseButton 
+            countDown={this.timerEngine} 
+          /> 
+          <ResetButton
+            resetTimer={this.resetTimer}
+          />
+        </div>
       </div>
     )
   }
