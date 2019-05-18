@@ -5,9 +5,9 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import './TimeAdjuster.css'
 
-let timeDisplay = ( seconds) => {
-        let returnedMinutes = Math.floor(seconds / 60)
-        return returnedMinutes
+let timeDisplay = ( seconds ) => {
+    let returnedMinutes = Math.floor(seconds / 60)
+    return returnedMinutes
 }
 
 function TimeAdjuster({time, downArrowClick, upArrowClick, timeAdjusterName}) {
