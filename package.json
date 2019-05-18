@@ -2,6 +2,7 @@
   "name": "pomodoro-clock",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.com/RizwanSyed357/pomodoro-clock",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.18",
     "@fortawesome/free-solid-svg-icons": "^5.8.2",
@@ -347,6 +348,7 @@
     "get-stream": "^3.0.0",
     "get-value": "^2.0.6",
     "getpass": "^0.1.7",
+    "gh-pages": "^2.0.1",
     "glob": "^7.1.4",
     "glob-base": "^0.3.0",
     "glob-parent": "^2.0.0",
@@ -1040,7 +1042,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
