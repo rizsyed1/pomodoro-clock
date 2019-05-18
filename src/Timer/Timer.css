@@ -4,13 +4,15 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    border-style: solid;
     width: 15%;
     margin-bottom: 2%;
     margin-left: auto;
     margin-right: auto;
     padding: 1.5% 1%;
     border-radius: 40px;
+    border-style: solid;
+    border-color: rgba(48, 48, 48, 0.5);    
+    border-width: 0.5em;
 }
 
 .titleSession{
