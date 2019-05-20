@@ -19,7 +19,7 @@ let timeDisplay = ( seconds ) => {
     
 
 
-function Timer({timeLeft, workTimer, timeAdjusterWorkTime}) {
+let Timer = ({timeLeft, workTimer, timeAdjusterWorkTime}) => {
         return (
             <div className='timerContainer'>
                 <span className='titleSession'>Session</span>

@@ -10,7 +10,7 @@ let timeDisplay = ( seconds ) => {
     return returnedMinutes
 }
 
-function TimeAdjuster({time, downArrowClick, upArrowClick, timeAdjusterName}) {
+let TimeAdjuster = ({time, downArrowClick, upArrowClick, timeAdjusterName}) =>  {
     return (
         <div className='timeContainer'>
             <span className='header'>{timeAdjusterName}</span>

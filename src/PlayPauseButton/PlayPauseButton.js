@@ -4,7 +4,7 @@ import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons';
 import './PlayPauseButton.css'
 
 
-function PlayPauseButton ({countDown}) {
+let PlayPauseButton = ({countDown}) =>  {
     return (
         <button onClick={countDown} className='playPauseButton'><FontAwesomeIcon icon={faPlay} /><FontAwesomeIcon icon={faPause} /></button>  
     )
