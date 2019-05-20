@@ -2,5 +2,14 @@
     background-color: #525B56;
     color: #f8f8ff;
     border-style: none;
-    font-size: 2em;
+    font-size: 1.5em;
+}
+
+@media (mid-width: 1024px){
+    .playPauseButton{
+        background-color: #525B56;
+        color: #f8f8ff;
+        border-style: none;
+        font-size: 2em;
+    }
 }

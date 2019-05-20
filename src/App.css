@@ -1,24 +1,52 @@
-html{
+.pomodoro{
   background-color: #525B56;
   height: 100vh;
   color: #f8f8ff;
   text-align: center
 }
 
+.title{
+  display: inline-block;
+  margin-top: 7%;
+  font-size: 1.5em;
+}
+
 .timeAdjusterContainer{
   display: flex;
   justify-content: space-around;
-  margin-left: 35%;
-  width: 30%;
-  font-size: 2em;
-}
-
-.title{
-  margin-top: 7%;
-  font-size: 4em;
+  margin-left: 5%;
+  width: 90%;
+  font-size: 1.5em
 }
 
 .timerAndButtons{
   padding-top: 3%;
   text-align: center
+}
+
+@media (mid-width: 1024px){
+  html{
+    background-color: #525B56;
+    height: 100vh;
+    color: #f8f8ff;
+    text-align: center
+  }
+  
+  .title{
+    margin-top: 7%;
+    font-size: 4em;
+  }
+  
+  .timeAdjusterContainer{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 35%;
+    width: 30%;
+    font-size: 2em;
+  }
+  
+  .timerAndButtons{
+    padding-top: 3%;
+    text-align: center
+  }
 }

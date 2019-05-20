@@ -4,11 +4,11 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 15%;
-    margin-bottom: 2%;
+    width: 40%;
+    margin-top: 7%;
     margin-left: auto;
     margin-right: auto;
-    padding: 1.5% 1%;
+    margin-bottom: 7%;
     border-radius: 40px;
     border-style: solid;
     border-color: rgba(48, 48, 48, 0.5);    
@@ -21,7 +21,33 @@
 
 .timeDisplay{
     font-family: 'Space Mono', monospace;
-    font-size: 5em;
+    font-size: 2em;
 }
 
-;
+@media (mid-width: 1024px){
+    
+    .timerContainer{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        width: 15%;
+        margin-bottom: 2%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1.5% 1%;
+        border-radius: 40px;
+        border-style: solid;
+        border-color: rgba(48, 48, 48, 0.5);    
+        border-width: 0.5em;
+    }
+    
+    .titleSession{
+        font-size: 2em;
+    }
+    
+    .timeDisplay{
+        font-family: 'Space Mono', monospace;
+        font-size: 5em;
+    }
+
+}

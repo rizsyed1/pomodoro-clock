@@ -5,5 +5,17 @@
 .time{
     display: inline-block;
     width: 20%;
+}
 
+
+
+@media (mid-width: 1024px){
+    .timeContainer{
+        display: inline-block;
+    }
+    
+    .time{
+        display: inline-block;
+        width: 20%;
+    }
 }
