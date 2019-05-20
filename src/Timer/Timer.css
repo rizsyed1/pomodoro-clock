@@ -3,6 +3,7 @@
 .timerContainer{
     display: flex;
     justify-content: center;
+    text-align: center;
     flex-direction: column;
     width: 40%;
     margin-top: 7%;
@@ -47,8 +48,9 @@
     }
     
     .timeDisplay{
+        display: inline-block;
         font-family: 'Space Mono', monospace;
-        font-size: 5em;
+        font-size: 3.8em;
     }
 
 }
