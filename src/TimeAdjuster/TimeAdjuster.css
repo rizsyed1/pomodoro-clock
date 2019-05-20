@@ -9,7 +9,7 @@
 
 
 
-@media (mid-width: 1024px){
+@media (min-width: 1024px){
     .timeContainer{
         display: inline-block;
     }

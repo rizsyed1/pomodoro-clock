@@ -24,13 +24,14 @@
     font-size: 2em;
 }
 
-@media (mid-width: 1024px){
+@media (min-width: 1024px){
     
     .timerContainer{
         display: flex;
         justify-content: center;
         flex-direction: column;
         width: 15%;
+        margin-top: 0%;
         margin-bottom: 2%;
         margin-left: auto;
         margin-right: auto;

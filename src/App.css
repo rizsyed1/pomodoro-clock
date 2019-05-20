@@ -24,22 +24,13 @@
   text-align: center
 }
 
-@media (mid-width: 1024px){
-  html{
-    background-color: #525B56;
-    height: 100vh;
-    color: #f8f8ff;
-    text-align: center
-  }
-  
+@media (min-width: 1024px){
+
   .title{
-    margin-top: 7%;
     font-size: 4em;
   }
   
   .timeAdjusterContainer{
-    display: flex;
-    justify-content: space-around;
     margin-left: 35%;
     width: 30%;
     font-size: 2em;
