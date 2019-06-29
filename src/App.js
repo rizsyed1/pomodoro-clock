@@ -19,12 +19,6 @@ class App extends React.Component {
       iterationCount: 0,
     }
   }
-
-  componentDidUpdate = (prevProps, prevState) => {
-    if (prevState.iterationCount !== this.state.iterationCount){
-      console.log(`iterationCount is now ${this.state.iterationCount}`)
-    }
-  }
   
   timerEngine = () => {
     if ( this.state.timerState === 'stopped' ) {
@@ -43,7 +37,6 @@ class App extends React.Component {
   switchControl = () => {
     let timeLeft = this.state.timeLeft; 
     let iterationCount = this.state.iterationCount
-    console.log(this.state.timerState)
     
     if( timeLeft === 0 && iterationCount <= 3 ) { 
       
@@ -52,13 +45,13 @@ class App extends React.Component {
             workTimer: 'break',  
             timeLeft: state.timeAdjusterBreakTime,
             iterationCount: state.iterationCount + 1,
-          }), console.log('break has started'))
+          }))
       
         } else {
             this.setState( (state) => ({  
               workTimer: 'session',  
               timeLeft: state.timeAdjusterWorkTime,  
-            }), console.log('session has started'))
+            }))
           }   
     
       } else if (iterationCount === 3 ) {

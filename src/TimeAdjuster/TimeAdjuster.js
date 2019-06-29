@@ -5,19 +5,19 @@ import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 import './TimeAdjuster.css'
 
-let timeDisplay = ( seconds ) => {
+const timeDisplay = ( seconds ) => {
     let returnedMinutes = Math.floor(seconds / 60)
     return returnedMinutes
 }
 
-let TimeAdjuster = ({time, downArrowClick, upArrowClick, timeAdjusterName}) =>  {
+const TimeAdjuster = ({time, downArrowClick, upArrowClick, timeAdjusterName}) =>  {
     return (
         <div className='timeContainer'>
             <span className='header'>{timeAdjusterName}</span>
             <br />
-            <span onClick={upArrowClick} className='arrow'><FontAwesomeIcon icon={faArrowUp}/></span>
+            <span onClick={upArrowClick} className='arrowUp'><FontAwesomeIcon icon={faArrowUp}/></span>
             <span className='time'>{timeDisplay(time)}</span>
-            <span onClick={downArrowClick} className='arrow'><FontAwesomeIcon  icon={faArrowDown} /></span>
+            <span onClick={downArrowClick} className='arrowDown'><FontAwesomeIcon  icon={faArrowDown} /></span>
         </div>
     )
 }
