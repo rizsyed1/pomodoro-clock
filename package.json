@@ -570,7 +570,7 @@
     "media-typer": "^0.3.0",
     "mem": "^1.1.0",
     "memory-fs": "^0.4.1",
-    "merge": "^1.2.1",
+    "merge": "^2.1.1",
     "merge-deep": "^3.0.2",
     "merge-descriptors": "^1.0.1",
     "merge-stream": "^1.0.1",
