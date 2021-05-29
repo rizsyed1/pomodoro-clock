@@ -1029,7 +1029,7 @@
     "wrappy": "^1.0.2",
     "write": "^0.2.1",
     "write-file-atomic": "^2.4.2",
-    "ws": "^5.2.2",
+    "ws": "^7.4.6",
     "x-is-string": "^0.1.0",
     "xml-name-validator": "^3.0.0",
     "xregexp": "^4.2.4",
