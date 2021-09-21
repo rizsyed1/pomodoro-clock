@@ -615,7 +615,7 @@
     "normalize-url": "^3.3.0",
     "npm-collect": "^1.0.5",
     "npm-run-path": "^2.0.2",
-    "nth-check": "^1.0.2",
+    "nth-check": "^2.0.1",
     "num2fraction": "^1.2.2",
     "number-is-nan": "^1.0.1",
     "nwsapi": "^2.1.4",
